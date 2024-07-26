@@ -13,11 +13,27 @@
         android:theme="@style/Theme.AndroidProject"
         tools:targetApi="31">
         <activity
-            android:name=".SignUpActivity"
+            android:name=".EditProfile"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".ProfileSection"
             android:exported="false" />
+        <activity
+            android:name=".Setting"
+            android:exported="false" />
+
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value=".MainActivity" />
+
+        <activity
+            android:name=".SignUpActivity"
+            android:exported="true"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".LoginActivity"
+            android:exported="true"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
