@@ -35,13 +35,53 @@
     <string name="myTrips">My Trips</string>
     <string name="itinerary">Itinerary</string>
     <string name="changePassword">Change Password</string>
-    <string name="help">Help</string>
+    <string name="help">Help and Support</string>
     <string name="logout">Logout</string>
     <!--Edit Profile Page -->
     <string name="editProfileHeading">Edit profile</string>
     <string name="fullNameEditText">Fullname</string>
     <string name="genderEditText">Gender</string>
-    <string name="dobEditText">Date of Birth</string>
+    <string name="dobEditText">Date of Birth </string>
     <string name="phoneNumberEditText">Phone Number</string>
     <string name="emailEditText">Email</string>
+    <string name="saveEditProfile">Save</string>
+    <string-array name="genderArray">
+        <item>Select Gender</item>
+        <item>Male</item>
+        <item>Female</item>
+        <item>Other</item>
+    </string-array>
+    <!--Change Password Page -->
+    <string name="changePasswordTextView">Change Password</string>
+    <string name="createNewPassword">Create new password</string>
+    <string name="contentChange">Your new password must be different from previous password</string>
+    <string name="enterPasswordTextView">Enter the password:</string>
+    <string name="enterPasswordEditText">Enter new password</string>
+    <string name="confirmPasswordTextView">Confirm password:</string>
+    <string name="confirmPasswordEditText">Re-enter the password</string>
+    <string name="resetPassword">Reset Password</string>
+    <!--Help & Support Page -->
+    <string name="helpTextView">Help and Support</string>
+    <string name="intro">Welcome to our Help and Support section!
+        We\'re here to ensure you have a smooth and enjoyable experience using our travel planning app.
+        Whether you need assistance with booking, itinerary planning, or managing your account,
+        our comprehensive resources and dedicated support team are ready to help.</string>
+    <string name="faqHeading">Frequently Asked Questions (FAQs):</string>
+    <string name="faqContent">Find quick answers to common questions about using our app, booking trips,
+        managing your profile, and more.</string>
+    <string name="contactUsHeading">Contact Us:</string>
+    <string name="contactUsContent">If you need personalized assistance,
+        feel free to reach out to our support team.
+        We\'re available via email, chat, or phone to help you with any inquiries
+        or issues you may encounter.
+    </string>
+    <string name="userGuidesHeading">User Guides:</string>
+    <string name="userGuidesContent">Explore our detailed user guides and tutorials to make the most of all the features our app offers.
+        Learn how to search for trips, add to your wishlist, plan itineraries,
+        and much more.</string>
+    <string name="feedbackHeading">Feedback:</string>
+    <string name="feedbackContent">We value your feedback! Share your suggestions and experiences to help us improve our services and better cater
+        to your travel needs.</string>
+    <string name="outro">Thank you for choosing our app for your travel adventures.
+        We\'re here to support you every step of the way!</string>
 </resources>

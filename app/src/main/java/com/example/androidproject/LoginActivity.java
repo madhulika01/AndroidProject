@@ -1,9 +1,12 @@
 package com.example.androidproject;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,8 +27,10 @@ public class LoginActivity extends AppCompatActivity {
     private TextView forgotPassword;
     private TextView newUser;
     private UserDatabaseHelper dbHelper;
+    public String tag="LoginActivity";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         //EdgeToEdge.enable(this);
         setContentView(R.layout.activity_login);
@@ -44,9 +49,12 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String username = usernameEdit.getText().toString();
+
                 String password = passwordEdit.getText().toString();
                 if(validateLogin(username,password)){
-                    Toast.makeText(LoginActivity.this,"Login Sucessful",Toast.LENGTH_SHORT).show();
+                    Log.i(tag,"Login Successful");
+                    saveLogin(username,password);
+                    navigateNext(username);
                 }
                 else{
                     Toast.makeText(LoginActivity.this,"Invalid username or password",Toast.LENGTH_SHORT).show();
@@ -61,6 +69,7 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        checkLoginState();
     }
     private boolean validateLogin(String username,String password){
         SQLiteDatabase db = dbHelper.getReadableDatabase();
@@ -80,5 +89,41 @@ public class LoginActivity extends AppCompatActivity {
         boolean loginSuccessful = cursor.getCount() > 0;
         cursor.close();
         return loginSuccessful;
+    }
+    private void navigateNext(String username){
+        Cursor cursor = dbHelper.getUserInfo(username);
+        if(cursor!=null && cursor.moveToFirst()){
+            int fullNameIndex = cursor.getColumnIndex(UserDatabaseHelper.FULL_NAME);
+            int emailIndex = cursor.getColumnIndex(UserDatabaseHelper.EMAIL);
+            if(fullNameIndex!=-1 && emailIndex !=-1){
+                String fullName = cursor.getString(fullNameIndex);
+                String email = cursor.getString(emailIndex);
+                cursor.close();
+                Intent intent = new Intent(LoginActivity.this, ProfileSection.class);
+                intent.putExtra("fullName",fullName);
+                intent.putExtra("email",email);
+                startActivity(intent);
+            }
+            else{
+                Log.e(tag,"Error: Invalid column index");
+                cursor.close();
+            }
+        }
+    }
+    private void saveLogin(String username,String password){
+        SharedPreferences sharedPreferences = getSharedPreferences("LoginPrefs", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean("isLoggedIn",true);
+        editor.putString("username",username);
+        editor.putString("password",password);
+        editor.apply();
+    }
+    private void checkLoginState(){
+        SharedPreferences sharedPreferences = getSharedPreferences("LoginPrefs",Context.MODE_PRIVATE);
+        boolean isLoggedIn = sharedPreferences.getBoolean("isLoggedIn",false);
+        if(isLoggedIn){
+            String username = sharedPreferences.getString("username","");
+            navigateNext(username);
+        }
     }
 }

@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ProfileSection">
+    tools:context=".EditProfile">
     <TextView
         android:id="@+id/editProfileTextView"
         android:layout_width="wrap_content"
@@ -31,7 +31,7 @@
         android:layout_marginTop="10dp"
         android:text="@string/fullName" />
     <TextView
-        android:id="@+id/emailID"
+        android:id="@+id/email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -48,39 +48,56 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
-        android:layout_marginVertical="10dp"
+        android:minHeight="48dp"
         android:hint="@string/fullNameEditText"/>
     <RelativeLayout
         android:id="@+id/genderAndDobLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginVertical="10dp"
         android:orientation="horizontal">
-    <EditText
-        android:id="@+id/genderEditText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="20dp"
-        android:layout_alignParentStart="true"
-        android:hint="@string/genderEditText"/>
+
+        <Spinner
+            android:id="@+id/genderSpinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_alignParentStart="true"
+            android:layout_weight="1"
+            android:minHeight="48dp" />
+
         <EditText
             android:id="@+id/dobEditText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
+            android:layout_weight="1"
             android:layout_marginHorizontal="20dp"
-            android:hint="@string/dobEditText"/>
+            android:minHeight="48dp"
+            android:hint="@string/dobEditText"
+            android:focusable="false"
+            android:clickable="true"/>
+
     </RelativeLayout>
     <EditText
         android:id="@+id/phoneNumberEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
+        android:minHeight="48dp"
         android:hint="@string/phoneNumberEditText"/>
     <EditText
         android:id="@+id/emailEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:minHeight="48dp"
         android:layout_marginHorizontal="20dp"
         android:hint="@string/emailEditText"/>
+    <Button
+        android:id="@+id/saveEditProfile"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_marginHorizontal="50dp"
+        android:text="@string/saveEditProfile"/>
 </LinearLayout>
