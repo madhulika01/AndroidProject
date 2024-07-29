@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".accountPrivacy">
+    tools:context=".notifications">
     <LinearLayout
         android:id="@+id/backButtonAndHeading"
         android:layout_width="match_parent"
@@ -32,40 +32,74 @@
                 android:layout_centerInParent="true" />
         </RelativeLayout>
         <TextView
-            android:id="@+id/settingsHeading"
-            android:layout_width="wrap_content"
+            android:id="@+id/notificationHeading"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginStart="80dp"
-            android:text="@string/accountHeading"
+            android:layout_marginStart="100dp"
+            android:text="@string/notificationsHeading"
             android:textSize="20sp"
             android:textStyle="bold" />
     </LinearLayout>
-
-    <androidx.appcompat.widget.SwitchCompat
-        android:id="@+id/third_party_toggle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="16sp"
-        android:text="@string/third_party"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:padding="10dp" />
-
-    <androidx.appcompat.widget.SwitchCompat
-        android:id="@+id/receive_mails_toggle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="16sp"
-        android:text="@string/receive_emails"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:padding="10dp" />
-    <Button
-        android:id="@+id/savePreferences"
+    <TextView
+        android:id="@+id/pushNotifications"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/savePreferences"
-        android:layout_marginTop="40dp"
-        android:layout_gravity="center"/>
+        android:text="@string/pushNotifications"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
+        android:textSize="16sp"
+        android:textStyle="bold"/>
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/reminders_toggle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
+        android:text="@string/reminders_toggle" />
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/trending_places_toggle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
+        android:text="@string/trending_places" />
+
+    <TextView
+        android:id="@+id/emailNotifications"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
+        android:text="@string/emailNotifications"
+        android:textSize="16sp"
+        android:textStyle="bold"/>
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/feedback_toggle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
+        android:text="@string/feedback_toggle" />
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/support_toggle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
+        android:text="@string/support_toggle" />
+
+    <Button
+        android:id="@+id/saveNotifiationPref"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/saveNotificationsPref"
+        android:layout_marginTop="20dp"/>
 </LinearLayout>

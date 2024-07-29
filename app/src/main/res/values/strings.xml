@@ -102,5 +102,13 @@
     <string name="third_party">Allow sharing your data with third-party services  </string>
     <string name="receive_emails">Receive promotional emails about special offers </string>
     <string name="savePreferences">Save</string>
-
+    <!--Notifications page-->
+    <string name="notificationsHeading">Notification</string>
+    <string name="pushNotifications">Push Notifications</string>
+    <string name="reminders_toggle">Reminders</string>
+    <string name="trending_places">Trending Places</string>
+    <string name="emailNotifications">Email Notifications</string>
+    <string name="feedback_toggle">Feedback Emails</string>
+    <string name="support_toggle">Support Emails</string>
+    <string name="saveNotificationsPref">Save</string>
 </resources>

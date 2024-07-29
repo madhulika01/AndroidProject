@@ -68,7 +68,6 @@ public class accountPrivacy extends AppCompatActivity {
         editor.putBoolean("thirdParty",third_party.isChecked());
         editor.putBoolean("receiveEmails",receive_emails.isChecked());
         editor.apply();
-        Log.i(tag,"Privacy settings saved");
         Toast.makeText(accountPrivacy.this,"Privacy settings saved",Toast.LENGTH_SHORT).show();
     }
 }

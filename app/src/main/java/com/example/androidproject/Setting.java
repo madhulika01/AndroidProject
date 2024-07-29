@@ -52,7 +52,6 @@ public class Setting extends AppCompatActivity {
         accountPrivacy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 Log.i(tag, "Clicked on account privacy");
                 Intent intent = new Intent(Setting.this, accountPrivacy.class);
                 intent.putExtra("fullName", getIntent().getStringExtra("fullName"));
@@ -65,6 +64,11 @@ public class Setting extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Log.i(tag, "Clicked on notification");
+                Intent intent = new Intent(Setting.this, notifications.class);
+                intent.putExtra("fullName", getIntent().getStringExtra("fullName"));
+                intent.putExtra("email", getIntent().getStringExtra("email"));
+                startActivity(intent);
+                finish();
             }
         });
         language.setOnClickListener(new View.OnClickListener() {
