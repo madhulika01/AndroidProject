@@ -52,7 +52,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 String password = passwordEdit.getText().toString();
                 if(validateLogin(username,password)){
-                    Log.i(tag,"Login Successful");
+                    Toast.makeText(LoginActivity.this,"Login Successful",Toast.LENGTH_SHORT).show();
                     saveLogin(username,password);
                     navigateNext(username);
                 }

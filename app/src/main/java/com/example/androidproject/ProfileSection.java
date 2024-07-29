@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -57,6 +58,8 @@ public class ProfileSection extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ProfileSection.this, Setting.class);
+                intent.putExtra("fullName", fullName);
+                intent.putExtra("email", email);
                 startActivity(intent);
             }
         });
@@ -78,6 +81,8 @@ public class ProfileSection extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ProfileSection.this, changePassword.class);
+                intent.putExtra("fullName", fullName);
+                intent.putExtra("email", email);
                 startActivity(intent);
             }
         });
@@ -86,6 +91,8 @@ public class ProfileSection extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ProfileSection.this, Help.class);
+                intent.putExtra("fullName", fullName);
+                intent.putExtra("email", email);
                 startActivity(intent);
             }
         });

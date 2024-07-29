@@ -1,7 +1,9 @@
 package com.example.androidproject;
 
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
@@ -58,9 +60,8 @@ public class SignUpActivity extends AppCompatActivity {
                 if(isInputValid(fullName,username,email,password,confirmPassword)) {
                     if (addUserToDatabase(fullName, username, email, password)) {
                         Toast.makeText(SignUpActivity.this, "Sign up Successful", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
-                        startActivity(intent);
-                        finish();
+                        saveLoginState(username,fullName,email);
+                        navigateNext();
                     } else {
                         Toast.makeText(SignUpActivity.this, "Sign Up Failed", Toast.LENGTH_SHORT).show();
                     }
@@ -92,5 +93,20 @@ public class SignUpActivity extends AppCompatActivity {
         Log.i(tag,"Entry added to the Database Users with Username" + username +" and password "+password);
         long newRowId = db.insert(UserDatabaseHelper.USERS, null,cValues);
         return newRowId!=-1;
+    }
+    private void saveLoginState(String username, String fullName, String email) {
+        SharedPreferences sharedPreferences = getSharedPreferences("LoginPrefs", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean("isLoggedIn", true);
+        editor.putString("username", username);
+        editor.putString("fullName", fullName);
+        editor.putString("email", email);
+        editor.apply();
+    }
+
+    private void navigateNext() {
+        Intent intent = new Intent(SignUpActivity.this, ProfileSection.class);
+        startActivity(intent);
+        finish();
     }
 }

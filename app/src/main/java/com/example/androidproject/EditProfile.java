@@ -1,6 +1,7 @@
 package com.example.androidproject;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -41,6 +43,14 @@ public class EditProfile extends AppCompatActivity {
         EditText phoneNumberEditText = findViewById(R.id.phoneNumberEditText);
         EditText emailEditText = findViewById(R.id.emailEditText);
         Button saveButton = findViewById(R.id.saveEditProfile);
+        RelativeLayout backButton = findViewById(R.id.backButton);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.i(tag, "back button is pressed");
+                goBack();
+            }
+        });
 
         String fullName = getIntent().getStringExtra("fullName");
         String email = getIntent().getStringExtra("email");
@@ -70,6 +80,13 @@ public class EditProfile extends AppCompatActivity {
                 // Handle save profile changes
             }
         });
+    }
+    private void goBack() {
+        Intent intent  = new Intent(EditProfile.this, ProfileSection.class);
+        intent.putExtra("fullName", getIntent().getStringExtra("fullName"));
+        intent.putExtra("email", getIntent().getStringExtra("email"));
+        startActivity(intent);
+        finish();
     }
     private void showDatePickerDialog() {
         final Calendar calendar = Calendar.getInstance();
