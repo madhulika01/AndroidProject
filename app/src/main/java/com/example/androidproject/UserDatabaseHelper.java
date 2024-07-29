@@ -34,16 +34,16 @@ public class UserDatabaseHelper extends SQLiteOpenHelper {
     }
     public UserDatabaseHelper(Context ctx){
         super(ctx,DATABASE_NAME,null,VERSION_NUM);
-        Log.i(tag,"UserDatabaseHelper called");
+        //Log.i(tag,"UserDatabaseHelper called");
     }
     @Override
     public void onCreate(SQLiteDatabase db){
-        Log.i(tag,"inside onCreate");
+        //Log.i(tag,"inside onCreate");
         db.execSQL(DATABASE_CREATE);
     }
     @Override
-    public void onUpgrade(SQLiteDatabase db,int oldVersion,int newVerison){
-        Log.i(tag,"Calling onUpgrade, old version = " + oldVersion +"new version = "+newVerison);
+    public void onUpgrade(SQLiteDatabase db,int oldVersion,int newVersion){
+        //Log.i(tag,"Calling onUpgrade, old version = " + oldVersion +"new version = "+newVersion);
         db.execSQL("DROP TABLE IF EXISTS " + USERS);
         onCreate(db);
     }
@@ -53,6 +53,16 @@ public class UserDatabaseHelper extends SQLiteOpenHelper {
         String selection = USERNAME + " = ?";
         String[] selectionArgs = {username};
         return db.query(USERS,columns,selection,selectionArgs,null,null,null);
+    }
+    public void deleteUser(String email) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        int rowsDeleted = db.delete(USERS, EMAIL + " = ?", new String[]{email});
+        if (rowsDeleted > 0) {
+            Log.i(tag, "User deleted successfully.");
+        } else {
+            Log.i(tag, "User not found or unable to delete.");
+        }
+        db.close();
     }
     public boolean updatePassword(String username, String newPassword){
         SQLiteDatabase db = this.getWritableDatabase();

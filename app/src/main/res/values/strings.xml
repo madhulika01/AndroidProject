@@ -23,20 +23,33 @@
     <string name="getStarted">Get Started</string>
     <!--Settings Page -->
     <string name="settings">Settings</string>
+    <string name="go_back_icon">Go back icon</string>
     <string name="accountPrivacy">Account Privacy</string>
+    <string name="accountPrivacyIcon">Account Privacy Icon</string>
     <string name="notification">Notification</string>
+    <string name="notificationIcon">Notification Icon</string>
     <string name="language">Language</string>
+    <string name="languageIcon">Language Icon</string>
     <string name="theme">Theme</string>
+    <string name="themeIcon">Theme Icon</string>
     <string name="deleteAccount">Delete Account</string>
+    <string name="deleteAccountIcon">Delete Account Icon</string>
     <!--Profile Page -->
     <string name="profile">Profile</string>
+    <string name="profile_img">Profile image icon</string>
     <string name="editProfile">Edit Profile</string>
     <string name="settingsTextView">Settings</string>
+    <string name="settingsImageView">Settings icon</string>
     <string name="myTrips">My Trips</string>
+    <string name="myTripsIcon">My Trips icon</string>
     <string name="itinerary">Itinerary</string>
+    <string name="itineraryIcon">Itinerary icon</string>
     <string name="changePassword">Change Password</string>
+    <string name="changePasswordIcon">Change Password icon</string>
     <string name="help">Help and Support</string>
+    <string name="helpIcon">Help and Support icon</string>
     <string name="logout">Logout</string>
+    <string name="logoutIcon">Logout icon</string>
     <!--Edit Profile Page -->
     <string name="editProfileHeading">Edit profile</string>
     <string name="fullNameEditText">Fullname</string>
@@ -84,4 +97,10 @@
         to your travel needs.</string>
     <string name="outro">Thank you for choosing our app for your travel adventures.
         We\'re here to support you every step of the way!</string>
+    <!--Account Privacy page-->
+    <string name="accountHeading">Account Privacy</string>
+    <string name="third_party">Allow sharing your data with third-party services  </string>
+    <string name="receive_emails">Receive promotional emails about special offers </string>
+    <string name="savePreferences">Save</string>
+
 </resources>

@@ -30,15 +30,12 @@ public class Help extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Log.i(tag, "back button is pressed");
-                goBack();
+                Intent intent  = new Intent(Help.this, ProfileSection.class);
+                intent.putExtra("fullName", getIntent().getStringExtra("fullName"));
+                intent.putExtra("email", getIntent().getStringExtra("email"));
+                startActivity(intent);
+                finish();
             }
         });
     }
-        private void goBack() {
-            Intent intent  = new Intent(Help.this, ProfileSection.class);
-            intent.putExtra("fullName", getIntent().getStringExtra("fullName"));
-            intent.putExtra("email", getIntent().getStringExtra("email"));
-            startActivity(intent);
-            finish();
-        }
-    }
+}

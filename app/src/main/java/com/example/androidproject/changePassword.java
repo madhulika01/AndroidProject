@@ -40,7 +40,11 @@ public class changePassword extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Log.i(tag, "back button is pressed");
-                goBack();
+                Intent intent  = new Intent(changePassword.this, ProfileSection.class);
+                intent.putExtra("fullName", getIntent().getStringExtra("fullName"));
+                intent.putExtra("email", getIntent().getStringExtra("email"));
+                startActivity(intent);
+                finish();
             }
         });
         resetPassword.setOnClickListener(new View.OnClickListener() {
@@ -59,13 +63,6 @@ public class changePassword extends AppCompatActivity {
                 }
             }
         });
-    }
-    private void goBack() {
-        Intent intent  = new Intent(changePassword.this, ProfileSection.class);
-        intent.putExtra("fullName", getIntent().getStringExtra("fullName"));
-        intent.putExtra("email", getIntent().getStringExtra("email"));
-        startActivity(intent);
-        finish();
     }
     private void changeUserPassword(String newPassword){
         SharedPreferences sharedPreferences = getSharedPreferences("LoginPrefs", Context.MODE_PRIVATE);
