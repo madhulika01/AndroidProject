@@ -41,4 +41,6 @@ dependencies {
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
     implementation ("com.github.denzcoskun:ImageSlideshow:0.1.2")
+    implementation("com.google.android.material:material:1.2.0")
+    implementation("com.google.android.gms:play-services-maps:19.0.0")
 }

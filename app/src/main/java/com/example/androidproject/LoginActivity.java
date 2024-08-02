@@ -55,6 +55,8 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(LoginActivity.this,"Login Successful",Toast.LENGTH_SHORT).show();
                     saveLogin(username,password);
                     navigateNext(username);
+                    Intent intent = new Intent(LoginActivity.this, home_page.class);
+                    startActivity(intent);
                 }
                 else{
                     Toast.makeText(LoginActivity.this,"Invalid username or password",Toast.LENGTH_SHORT).show();
