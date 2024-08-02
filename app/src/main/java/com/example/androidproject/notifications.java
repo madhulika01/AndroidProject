@@ -1,7 +1,9 @@
 package com.example.androidproject;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -11,6 +13,7 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.ContentFrameLayout;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -45,7 +48,7 @@ public class notifications extends AppCompatActivity {
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i(tag, "back button is pressed");
+                Log.i(tag, "Back button is pressed");
                 Intent intent  = new Intent(notifications.this, Setting.class);
                 intent.putExtra("fullName", getIntent().getStringExtra("fullName"));
                 intent.putExtra("email", getIntent().getStringExtra("email"));
@@ -78,12 +81,41 @@ public class notifications extends AppCompatActivity {
     }
 
     private void saveNotificationsSettings() {
-        SharedPreferences.Editor editor = notificationsPrefs.edit();
-        editor.putBoolean("reminders", remindersToggle.isChecked());
-        editor.putBoolean("trendingPlaces", trendingPlacesToggle.isChecked());
-        editor.putBoolean("feedback", feedbackToggle.isChecked());
-        editor.putBoolean("support", supportToggle.isChecked());
-        editor.apply();
-        Toast.makeText(notifications.this, "Notification settings saved.", Toast.LENGTH_SHORT).show();
+       boolean reminders = remindersToggle.isChecked();
+       boolean trendingPlaces = trendingPlacesToggle.isChecked();
+       boolean feedback = feedbackToggle.isChecked();
+       boolean support = supportToggle.isChecked();
+       new saveNotificationsPreferencesTask(this,notificationsPrefs,reminders,trendingPlaces,feedback,support).execute();
+    }
+    private static class saveNotificationsPreferencesTask extends AsyncTask<Void, Void, Void>{
+        private Context context;
+        private SharedPreferences sharedPreferences;
+        private boolean reminders;
+        private boolean trendingPlaces;
+        private boolean feedback;
+        private boolean support;
+        public saveNotificationsPreferencesTask(Context context,SharedPreferences sharedPreferences,boolean reminders,boolean trendingPlaces,boolean feedback,boolean support){
+            this.context = context;
+            this.sharedPreferences = sharedPreferences;
+            this.reminders = reminders;
+            this.trendingPlaces = trendingPlaces;
+            this.feedback = feedback;
+            this.support = support;
+        }
+        @Override
+        protected Void doInBackground(Void... voids){
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putBoolean("reminders",reminders);
+            editor.putBoolean("trendingPlaces",trendingPlaces);
+            editor.putBoolean("feedback",feedback);
+            editor.putBoolean("support",support);
+            editor.apply();
+            return null;
+        }
+        @Override
+        protected void onPostExecute(Void aVoid){
+            super.onPostExecute(aVoid);
+            Toast.makeText(context,"Notification settings saved",Toast.LENGTH_SHORT).show();
+        }
     }
 }

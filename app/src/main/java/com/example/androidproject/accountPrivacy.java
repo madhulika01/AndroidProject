@@ -1,7 +1,9 @@
 package com.example.androidproject;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -42,7 +44,7 @@ public class accountPrivacy extends AppCompatActivity {
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i(tag, "back button is pressed");
+                Log.i(tag, "Back button is pressed");
                 Intent intent  = new Intent(accountPrivacy.this, Setting.class);
                 intent.putExtra("fullName", getIntent().getStringExtra("fullName"));
                 intent.putExtra("email", getIntent().getStringExtra("email"));
@@ -57,6 +59,11 @@ public class accountPrivacy extends AppCompatActivity {
             }
         });
     }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadAccountPrivacySettings();
+    }
     private void loadAccountPrivacySettings(){
         boolean thirdParty = accountPrivacyPreferences.getBoolean("thirdParty",true);
         boolean receiveEmails = accountPrivacyPreferences.getBoolean("receiveEmails",true);
@@ -64,10 +71,34 @@ public class accountPrivacy extends AppCompatActivity {
         receive_emails.setChecked(receiveEmails);
     }
     private void saveAccountPrivacySettings(){
-        SharedPreferences.Editor editor = accountPrivacyPreferences.edit();
-        editor.putBoolean("thirdParty",third_party.isChecked());
-        editor.putBoolean("receiveEmails",receive_emails.isChecked());
-        editor.apply();
-        Toast.makeText(accountPrivacy.this,"Privacy settings saved",Toast.LENGTH_SHORT).show();
+        boolean thirdParty = third_party.isChecked();
+        boolean receiveEmails = receive_emails.isChecked();
+        new saveAccountPrivacySettingsTask(this,accountPrivacyPreferences,thirdParty,receiveEmails).execute();
+    }
+    private static class saveAccountPrivacySettingsTask extends AsyncTask<Void, Void, Void>{
+        private Context context;
+        private SharedPreferences sharedPreferences;
+        private boolean thirdParty;
+        private boolean receiveEmails;
+
+        public saveAccountPrivacySettingsTask(Context context,SharedPreferences sharedPreferences,boolean thirdParty,boolean receiveEmails){
+            this.context = context;
+            this.sharedPreferences = sharedPreferences;
+            this.thirdParty = thirdParty;
+            this.receiveEmails = receiveEmails;
+        }
+        @Override
+        protected Void doInBackground(Void... voids){
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putBoolean("thirdParty",thirdParty);
+            editor.putBoolean("receiveEmails",receiveEmails);
+            editor.apply();
+            return null;
+        }
+        @Override
+        protected void onPostExecute(Void aVoid){
+            super.onPostExecute(aVoid);
+            Toast.makeText(context,"Account Privacy settings saved",Toast.LENGTH_SHORT).show();
+        }
     }
 }

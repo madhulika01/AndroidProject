@@ -2,6 +2,7 @@ package com.example.androidproject;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -22,7 +23,12 @@ import com.denzcoskun.imageslider.models.SlideModel;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-    private String tag = "MainActivity";
+    private final String tag = "MainActivity";
+    private ViewFlipper viewFlipper;
+    private Handler handler;
+    private final int flipInterval = 2000;
+    private int currentIndex = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,14 +39,32 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        viewFlipper = findViewById(R.id.imageSlider);
+        handler = new Handler();
+        startFlipping();
         Button getStarted = findViewById(R.id.getStartedButton);
         getStarted.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i(tag,"Get Started was clicked");
-                Intent intent = new Intent(MainActivity.this,LoginActivity.class);
+                Log.i(tag, "Get Started was clicked");
+                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
                 startActivity(intent);
             }
         });
     }
+
+    private void startFlipping() {
+        handler.postDelayed(flipRunnable, flipInterval);
+    }
+
+    private final Runnable flipRunnable = new Runnable() {
+        @Override
+        public void run() {
+            if (currentIndex < viewFlipper.getChildCount() - 1) {
+                viewFlipper.showNext();
+                currentIndex++;
+                handler.postDelayed(this, flipInterval);
+            }
+        }
+    };
 }

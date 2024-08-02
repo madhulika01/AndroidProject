@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Projet Android</string>
+    <!--Login Page -->
+    <string name="login">Se connecter</string>
+    <string name="username">Nom d\'utilisateur</string>
+    <string name="usernameEdit">Nom d\'utilisateur</string>
+    <string name="password">Mot de passe</string>
+    <string name="passwordEdit">Mot de passe</string>
+    <string name="forgotPassword">Mot de passe oublié?</string>
+    <string name="loginButton">Se connecter</string>
+    <string name="newUser">Nouvel utilisateur ?</string>
+    <!--SignUp Page -->
+    <string name="signUpButton">S\'inscrire</string>
+    <string name="signUp">S\'inscrire</string>
+    <string name="fullName">Nom et prénom</string>
+    <string name="fullNameEdit">Nom et prénom</string>
+    <string name="emailID">ID de courrier électronique</string>
+    <string name="emailIDEdit">ID de courrier électronique</string>
+    <string name="confirmPassword">Confirmez le mot de passe</string>
+    <string name="confirmPasswordEdit">Confirmez le mot de passe</string>
+    <string name="alreadyUser">Déjà utilisateur ?</string>
+    <!--Home Page -->
+    <string name="getStarted">Commencer</string>
+    <!--Settings Page -->
+    <string name="settings">Paramètres</string>
+    <string name="go_back_icon">Icône de retour</string>
+    <string name="accountPrivacy">Confidentialité du compte</string>
+    <string name="accountPrivacyIcon">Icône de confidentialité du compte</string>
+    <string name="notification">Notification</string>
+    <string name="notificationIcon">Icône de notification</string>
+    <string name="language">Langue</string>
+    <string name="languageIcon">Icône de langue</string>
+    <string name="theme">Thème</string>
+    <string name="themeIcon">Icône de thème</string>
+    <string name="deleteAccount">Supprimer le compte</string>
+    <string name="deleteAccountIcon">Icône Supprimer le compte</string>
+    <!--Profile Page -->
+    <string name="profile">Profil</string>
+    <string name="profile_img">Icône d\'image de profil</string>
+    <string name="editProfile">Editer le profil</string>
+    <string name="settingsTextView">Paramètres</string>
+    <string name="settingsImageView">Icône Paramètres</string>
+    <string name="myTrips">Mes excursions</string>
+    <string name="myTripsIcon">Icône Mes voyages</string>
+    <string name="itinerary">Itinéraire</string>
+    <string name="itineraryIcon">Icône d\'itinéraire</string>
+    <string name="changePassword">Changer le mot de passe</string>
+    <string name="changePasswordIcon">Icône Modifier le mot de passe</string>
+    <string name="help">Aide et soutien</string>
+    <string name="helpIcon">Icône Aide et support</string>
+    <string name="logout">Se déconnecter</string>
+    <string name="logoutIcon">Icône de déconnexion</string>
+    <!--Edit Profile Page -->
+    <string name="editProfileHeading">Editer le profil</string>
+    <string name="fullNameEditText">Nom et prénom</string>
+    <string name="genderEditText">Genre</string>
+    <string name="dobEditText">Date de naissance </string>
+    <string name="phoneNumberEditText">Numéro de téléphone</string>
+    <string name="emailEditText">E-mail</string>
+    <string name="saveEditProfile">Sauvegarder</string>
+    <string-array name="genderArray">
+        <item>Sélectionnez le sexe</item>
+        <item>Mâle</item>
+        <item>Femelle</item>
+        <item>Autre</item>
+    </string-array>
+    <!--Change Password Page -->
+    <string name="changePasswordTextView">Changer le mot de passe</string>
+    <string name="createNewPassword">Créer un nouveau mot de passe</string>
+    <string name="contentChange">Votre nouveau mot de passe doit être différent du mot de passe précédent</string>
+    <string name="enterPasswordTextView">Entrer le mot de passe:</string>
+    <string name="enterPasswordEditText">Entrez un nouveau mot de passe:</string>
+    <string name="confirmPasswordTextView">Confirmez le mot de passe:</string>
+    <string name="confirmPasswordEditText">Ressaisissez le mot de passe:</string>
+    <string name="resetPassword">Réinitialiser le mot de passe</string>
+    <!--Help & Support Page -->
+    <string name="helpTextView">Aide et soutien</string>
+    <string name="intro">Bienvenue dans notre section Aide et support !
+        Nous sommes là pour vous assurer une expérience fluide et agréable en utilisant notre application de planification de voyage.
+        Que vous ayez besoin d'aide pour la réservation, la planification d'un itinéraire ou la gestion de votre compte,
+        nos ressources complètes et notre équipe d’assistance dédiée sont prêtes à vous aider.</string>
+    <string name="faqHeading">Foire aux questions (FAQ):</string>
+    <string name="faqContent">Trouvez des réponses rapides aux questions courantes sur l\'utilisation de notre application, la réservation de voyages,
+        gérer votre profil, et plus encore.</string>
+    <string name="contactUsHeading">Contactez-nous:</string>
+    <string name="contactUsContent">Si vous avez besoin d\'une assistance personnalisée,
+        n\'hésitez pas à contacter notre équipe d\'assistance.Nous sommes disponibles par e-mail, chat ou téléphone pour vous aider
+        avec toute demande de renseignements ou les problèmes que vous pourriez rencontrer.
+    </string>
+    <string name="userGuidesHeading">Guides d\'utilisation :</string>
+    <string name="userGuidesContent">Explorez nos guides d\'utilisation et tutoriels détaillés pour tirer le meilleur parti de toutes les fonctionnalités offertes par notre application.
+        Apprenez à rechercher des voyages, à les ajouter à votre liste de souhaits, à planifier des itinéraires,
+        et beaucoup plus.</string>
+    <string name="feedbackHeading">Retour:</string>
+    <string name="feedbackContent">Nous apprécions vos commentaires! Partagez vos suggestions et expériences pour nous aider à améliorer nos services et à mieux répondre
+        à vos besoins de voyage.</string>
+    <string name="outro">Merci d\'avoir choisi notre application pour vos aventures de voyage.
+        Nous sommes là pour vous accompagner à chaque étape!</string>
+    <!--Account Privacy page-->
+    <string name="accountHeading">Confidentialité du compte</string>
+    <string name="third_party">Allow sharing your data with third-party services  </string>
+    <string name="receive_emails">Autoriser le partage de vos données avec des services tiers</string>
+    <string name="savePreferences">Sauvegarder</string>
+    <!--Notifications page-->
+    <string name="notificationsHeading">Notification</string>
+    <string name="pushNotifications">Notifications push</string>
+    <string name="reminders_toggle">Rappels</string>
+    <string name="trending_places">Trending Places</string>
+    <string name="emailNotifications">Lieux tendances</string>
+    <string name="feedback_toggle">E-mails de commentaires</string>
+    <string name="support_toggle">E-mails d\'assistance</string>
+    <string name="saveNotificationsPref">Sauvegarder</string>
+</resources>
