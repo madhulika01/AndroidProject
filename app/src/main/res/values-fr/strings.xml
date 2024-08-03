@@ -35,6 +35,12 @@
     <string name="themeIcon">Icône de thème</string>
     <string name="deleteAccount">Supprimer le compte</string>
     <string name="deleteAccountIcon">Icône Supprimer le compte</string>
+    <string name="changeLanguageDialog">Changer de langue</string>
+    <string name="changeLanguageMessage">Pour changer la langue, veuillez accéder aux paramètres système.</string>
+    <string name="gotoSettings">Aller aux paramètres</string>
+    <string name="cancel">Annuler</string>
+    <string name="chooseTheme">Choisir un thème</string>
+    <string name="deleteMessage">Êtes-vous sûr de vouloir supprimer votre compte?</string>
     <!--Profile Page -->
     <string name="profile">Profil</string>
     <string name="profile_img">Icône d\'image de profil</string>
@@ -80,23 +86,42 @@
         Nous sommes là pour vous assurer une expérience fluide et agréable en utilisant notre application de planification de voyage.
         Que vous ayez besoin d\'aide pour la réservation, la planification d\'un itinéraire ou la gestion de votre compte,
         nos ressources complètes et notre équipe d’assistance dédiée sont prêtes à vous aider.</string>
+    <string name="feedbackMessage">Votre avis est important pour nous. Faites-nous savoir ce que vous pensez et comment nous pouvons améliorer notre application pour vous.</string>
+    <string name="feedbackDialogTitle">Retour</string>
+    <string name="feedbacKSubmit">Soumettre</string>
+    <string name="feedbackToast">Retour d\'information reçu:</string>
+    <!--FAQ Section -->
     <string name="faqHeading">Foire aux questions (FAQ):</string>
     <string name="faqContent">Trouvez des réponses rapides aux questions courantes sur l\'utilisation de notre application, la réservation de voyages,
         gérer votre profil, et plus encore.</string>
+    <string name="question1">Comment utiliser cette application ?</string>
+    <string name="answer1">Tu dois d\'abord te connecter. Une fois la connexion réussie, vous serez redirigé vers la page d\'accueil.
+        Une fois sur place, vous pouvez rechercher manuellement votre destination ou remplir un questionnaire pour recevoir des recommandations personnalisées.
+        Dans un premier temps, vous sélectionnerez votre destination, puis choisirez les activités, indiquerez le nombre de personnes voyageant et préciserez le climat.
+        Sur la base de ces informations, vous recevrez des recommandations</string>
+    <string name="question2">Puis-je rechercher la destination manuellement ?</string>
+    <string name="answer2">Oui, vous pouvez rechercher des destinations manuellement en utilisant notre barre de recherche en haut de la page. </string>
+    <string name="question3">Comment créer un itinéraire de voyage ?</string>
+    <string name="answer3">Vous pouvez créer un itinéraire en cliquant sur le bouton Ajouter en saisissant le lieu et la date, puis en cliquant sur l\'entrée que vous allez
+        être redirigé vers une vue détaillée qui vous donnera la possibilité d\'ajouter des détails pour différents jours en fonction du matin, de l\'après-midi et du soir.</string>
+    <!--Contact Us Section -->
     <string name="contactUsHeading">Contactez-nous:</string>
     <string name="contactUsContent">Si vous avez besoin d\'une assistance personnalisée,
         n\'hésitez pas à contacter notre équipe d\'assistance.Nous sommes disponibles par e-mail, chat ou téléphone pour vous aider
         avec toute demande de renseignements ou les problèmes que vous pourriez rencontrer.
     </string>
-    <string name="userGuidesHeading">Guides d\'utilisation :</string>
-    <string name="userGuidesContent">Explorez nos guides d\'utilisation et tutoriels détaillés pour tirer le meilleur parti de toutes les fonctionnalités offertes par notre application.
-        Apprenez à rechercher des voyages, à les ajouter à votre liste de souhaits, à planifier des itinéraires,
-        et beaucoup plus.</string>
+    <string name="phoneImageView">logo de téléphone</string>
+    <string name="phoneNumber">+1 435 657 8910</string>
+    <string name="emailImageView">logo de courrier</string>
+    <string name="email">travel@gmail.com</string>
+
+    <!--Feedback Dialog-->
     <string name="feedbackHeading">Retour:</string>
-    <string name="feedbackContent">Nous apprécions vos commentaires! Partagez vos suggestions et expériences pour nous aider à améliorer nos services et à mieux répondre
-        à vos besoins de voyage.</string>
+    <string name="feedbackEditText">Entrez vos commentaires ici</string>
+
     <string name="outro">Merci d\'avoir choisi notre application pour vos aventures de voyage.
         Nous sommes là pour vous accompagner à chaque étape!</string>
+
     <!--Account Privacy page-->
     <string name="accountHeading">Confidentialité du compte</string>
     <string name="third_party">Allow sharing your data with third-party services  </string>
@@ -111,5 +136,6 @@
     <string name="feedback_toggle">E-mails de commentaires</string>
     <string name="support_toggle">E-mails d\'assistance</string>
     <string name="saveNotificationsPref">Sauvegarder</string>
+
 
 </resources>

@@ -5,21 +5,31 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.util.Locale;
+
 public class Setting extends AppCompatActivity {
     public String tag = "Settings";
     private UserDatabaseHelper dbHelper;
+    private SharedPreferences themePreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +45,7 @@ public class Setting extends AppCompatActivity {
         LinearLayout language = findViewById(R.id.languageLayout);
         LinearLayout theme = findViewById(R.id.themeLayout);
         LinearLayout delete = findViewById(R.id.deleteLayout);
+        themePreferences = getSharedPreferences("ThemePrefs", Context.MODE_PRIVATE);
         RelativeLayout backButton = findViewById(R.id.backButton);
         dbHelper = new UserDatabaseHelper(this);
         backButton.setOnClickListener(new View.OnClickListener() {
@@ -74,13 +85,17 @@ public class Setting extends AppCompatActivity {
         language.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Log.i(tag, "Clicked on language");
+                changeLanguage();
             }
         });
         theme.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Log.i(tag, "Clicked on theme");
+                changeTheme();
             }
         });
         delete.setOnClickListener(new View.OnClickListener() {
@@ -91,10 +106,53 @@ public class Setting extends AppCompatActivity {
             }
         });
     }
+        private void changeLanguage(){
+            new AlertDialog.Builder(this).setTitle(getString(R.string.changeLanguageDialog))
+                        .setMessage(getString(R.string.changeLanguageMessage))
+                        .setPositiveButton(getString(R.string.gotoSettings), (dialog, which) -> {
+                            Intent intent = new Intent(Settings.ACTION_LOCALE_SETTINGS);
+                            startActivity(intent);
+                        })
+                        .setNegativeButton(getString(R.string.cancel), null)
+                        .show();
+        }
+
+        private void changeTheme() {
+            final String[] themes = {"Light", "Dark"};
+            new AlertDialog.Builder(this)
+                .setTitle(getString(R.string.chooseTheme))
+                .setSingleChoiceItems(themes, getSelectedTheme(), (dialog, which) -> {
+                    if (which == 0) {
+                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                        saveTheme(AppCompatDelegate.MODE_NIGHT_NO);
+                    } else {
+                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                        saveTheme(AppCompatDelegate.MODE_NIGHT_YES);
+                    }
+                    dialog.dismiss();
+                    recreate(); // to apply the theme change
+                })
+                .setNegativeButton(getString(R.string.cancel), null)
+                .show();
+        }
+        private void saveTheme(int mode) {
+            SharedPreferences.Editor editor = themePreferences.edit();
+            editor.putInt("theme_mode", mode);
+            editor.apply();
+        }
+
+        private int getSelectedTheme() {
+            return themePreferences.getInt("theme_mode", AppCompatDelegate.MODE_NIGHT_NO) == AppCompatDelegate.MODE_NIGHT_NO ? 0 : 1;
+        }
+
+        private void setAppTheme() {
+            int themeMode = themePreferences.getInt("theme_mode", AppCompatDelegate.MODE_NIGHT_NO);
+            AppCompatDelegate.setDefaultNightMode(themeMode);
+        }
         private void showDeleteAccountDialog() {
             new AlertDialog.Builder(this)
-                .setTitle("Delete Account")
-                .setMessage("Are you sure you want to delete your account?")
+                .setTitle(getString(R.string.deleteAccount))
+                .setMessage(getString(R.string.deleteMessage))
                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         deleteAccount();
