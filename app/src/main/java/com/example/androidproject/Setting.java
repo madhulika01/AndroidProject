@@ -27,7 +27,7 @@ import androidx.core.view.WindowInsetsCompat;
 import java.util.Locale;
 
 public class Setting extends AppCompatActivity {
-    public String tag = "Settings";
+    public final String tag = "Settings";
     private UserDatabaseHelper dbHelper;
     private SharedPreferences themePreferences;
     public String username;
@@ -50,11 +50,7 @@ public class Setting extends AppCompatActivity {
         RelativeLayout backButton = findViewById(R.id.backButton);
         dbHelper = new UserDatabaseHelper(this);
         username = getIntent().getStringExtra("username");
-        if (username == null) {
-            Log.e(tag, "Username is null. Exiting activity.");
-            finish();
-            return;
-        }
+
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -140,7 +136,7 @@ public class Setting extends AppCompatActivity {
                         saveTheme(AppCompatDelegate.MODE_NIGHT_YES);
                     }
                     dialog.dismiss();
-                    recreate(); // to apply the theme change
+                    recreate();
                 })
                 .setNegativeButton(getString(R.string.cancel), null)
                 .show();

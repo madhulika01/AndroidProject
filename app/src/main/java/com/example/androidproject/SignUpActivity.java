@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -27,7 +28,7 @@ public class SignUpActivity extends AppCompatActivity {
     private Button signUpButton;
     private TextView alreadyUser;
     private UserDatabaseHelper dbHelper;
-    private String tag = "SignUp Activity";
+    private final String tag = "SignUp Activity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,7 +82,33 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     private boolean isInputValid(String fullName, String username, String email, String password, String confirmPassword) {
-        return !fullName.isEmpty() && !username.isEmpty() && !email.isEmpty() && !password.isEmpty() && password.equals(confirmPassword);
+        if (fullName.isEmpty() || username.isEmpty() || email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
+            return false;
+        }
+
+        if (!fullName.matches("[a-zA-Z\\s]+")) {
+            Toast.makeText(this, "Full Name can only contain letters and spaces", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            Toast.makeText(this, "Invalid email address", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if (password.length() < 8 || !password.matches(".*[A-Z].*") || !password.matches(".*[a-z].*") ||
+                !password.matches(".*[0-9].*") || !password.matches(".*[@#$%^&+=].*")) {
+            Toast.makeText(this, "Password must be at least 8 characters long and contain at least one uppercase letter, " +
+                    "one lowercase letter, one digit, and one special character (@#\\$%^&+=)", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if (!password.equals(confirmPassword)) {
+            Toast.makeText(this, "Passwords do not match", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        return true;
     }
 
     private boolean addUserToDatabase(String fullName, String username, String email, String password) {
