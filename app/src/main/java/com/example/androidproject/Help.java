@@ -41,6 +41,7 @@ public class Help extends AppCompatActivity {
                 Intent intent  = new Intent(Help.this, ProfileSection.class);
                 intent.putExtra("fullName", getIntent().getStringExtra("fullName"));
                 intent.putExtra("email", getIntent().getStringExtra("email"));
+                intent.putExtra("username",getIntent().getStringExtra("username"));
                 startActivity(intent);
                 finish();
             }
@@ -50,6 +51,7 @@ public class Help extends AppCompatActivity {
             Intent intent = new Intent(Help.this,faq.class);
             intent.putExtra("fullName", getIntent().getStringExtra("fullName"));
             intent.putExtra("email", getIntent().getStringExtra("email"));
+            intent.putExtra("username",getIntent().getStringExtra("username"));
             startActivity(intent);
         });
         TextView contactUs = findViewById(R.id.contactUsHeading);
@@ -57,6 +59,7 @@ public class Help extends AppCompatActivity {
             Intent intent = new Intent(Help.this,contactUs.class);
             intent.putExtra("fullName", getIntent().getStringExtra("fullName"));
             intent.putExtra("email", getIntent().getStringExtra("email"));
+            intent.putExtra("username",getIntent().getStringExtra("username"));
             startActivity(intent);
         });
         TextView feedback = findViewById(R.id.feedbackHeading);

@@ -51,6 +51,7 @@ public class EditProfile extends AppCompatActivity {
                 Intent intent  = new Intent(EditProfile.this, ProfileSection.class);
                 intent.putExtra("fullName", getIntent().getStringExtra("fullName"));
                 intent.putExtra("email", getIntent().getStringExtra("email"));
+                intent.putExtra("username",getIntent().getStringExtra("username"));
                 startActivity(intent);
                 finish();
             }
@@ -85,9 +86,7 @@ public class EditProfile extends AppCompatActivity {
             }
         });
     }
-    private void goBack() {
 
-    }
     private void showDatePickerDialog() {
         final Calendar calendar = Calendar.getInstance();
         int year = calendar.get(Calendar.YEAR);

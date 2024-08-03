@@ -30,6 +30,7 @@ public class Setting extends AppCompatActivity {
     public String tag = "Settings";
     private UserDatabaseHelper dbHelper;
     private SharedPreferences themePreferences;
+    public String username;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +49,12 @@ public class Setting extends AppCompatActivity {
         themePreferences = getSharedPreferences("ThemePrefs", Context.MODE_PRIVATE);
         RelativeLayout backButton = findViewById(R.id.backButton);
         dbHelper = new UserDatabaseHelper(this);
+        username = getIntent().getStringExtra("username");
+        if (username == null) {
+            Log.e(tag, "Username is null. Exiting activity.");
+            finish();
+            return;
+        }
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -55,6 +62,7 @@ public class Setting extends AppCompatActivity {
                 Intent intent  = new Intent(Setting.this, ProfileSection.class);
                 intent.putExtra("fullName", getIntent().getStringExtra("fullName"));
                 intent.putExtra("email", getIntent().getStringExtra("email"));
+                intent.putExtra("username",getIntent().getStringExtra("username"));
                 startActivity(intent);
                 finish();
             }
@@ -65,6 +73,7 @@ public class Setting extends AppCompatActivity {
             public void onClick(View v) {
                 Log.i(tag, "Clicked on account privacy");
                 Intent intent = new Intent(Setting.this, accountPrivacy.class);
+                intent.putExtra("username",getIntent().getStringExtra("username"));
                 intent.putExtra("fullName", getIntent().getStringExtra("fullName"));
                 intent.putExtra("email", getIntent().getStringExtra("email"));
                 startActivity(intent);
@@ -76,6 +85,7 @@ public class Setting extends AppCompatActivity {
             public void onClick(View v) {
                 Log.i(tag, "Clicked on notification");
                 Intent intent = new Intent(Setting.this, notifications.class);
+                intent.putExtra("username",getIntent().getStringExtra("username"));
                 intent.putExtra("fullName", getIntent().getStringExtra("fullName"));
                 intent.putExtra("email", getIntent().getStringExtra("email"));
                 startActivity(intent);

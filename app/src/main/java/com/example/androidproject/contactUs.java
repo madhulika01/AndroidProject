@@ -33,6 +33,7 @@ public class contactUs extends AppCompatActivity {
                 Intent intent = new Intent(contactUs.this, Help.class);
                 intent.putExtra("fullName", getIntent().getStringExtra("fullName"));
                 intent.putExtra("email", getIntent().getStringExtra("email"));
+                intent.putExtra("username",getIntent().getStringExtra("username"));
                 startActivity(intent);
                 finish();
             }

@@ -51,6 +51,7 @@ public class ProfileSection extends AppCompatActivity {
                 Intent intent = new Intent(ProfileSection.this, EditProfile.class);
                 intent.putExtra("fullName",fullName);
                 intent.putExtra("email",email);
+                intent.putExtra("username",getIntent().getStringExtra("username"));
                 startActivity(intent);
             }
         });
@@ -60,6 +61,7 @@ public class ProfileSection extends AppCompatActivity {
                 Intent intent = new Intent(ProfileSection.this, Setting.class);
                 intent.putExtra("fullName", fullName);
                 intent.putExtra("email", email);
+                intent.putExtra("username",getIntent().getStringExtra("username"));
                 startActivity(intent);
             }
         });
@@ -89,6 +91,7 @@ public class ProfileSection extends AppCompatActivity {
                 Intent intent = new Intent(ProfileSection.this, changePassword.class);
                 intent.putExtra("fullName", fullName);
                 intent.putExtra("email", email);
+                intent.putExtra("username",getIntent().getStringExtra("username"));
                 startActivity(intent);
             }
         });
@@ -99,6 +102,7 @@ public class ProfileSection extends AppCompatActivity {
                 Intent intent = new Intent(ProfileSection.this, Help.class);
                 intent.putExtra("fullName", fullName);
                 intent.putExtra("email", email);
+                intent.putExtra("username",getIntent().getStringExtra("username"));
                 startActivity(intent);
             }
         });

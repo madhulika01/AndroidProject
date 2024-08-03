@@ -78,7 +78,7 @@ public class LoginActivity extends AppCompatActivity {
         String[] selectionArgs = {username,password};
 
         Cursor cursor = db.query(
-                UserDatabaseHelper.USERS,
+                UserDatabaseHelper.TRAVELERS,
                 projection,
                 selection,
                 selectionArgs,
@@ -88,6 +88,7 @@ public class LoginActivity extends AppCompatActivity {
         );
         boolean loginSuccessful = cursor.getCount() > 0;
         cursor.close();
+        db.close();
         return loginSuccessful;
     }
     private void navigateNext(String username){
@@ -102,7 +103,9 @@ public class LoginActivity extends AppCompatActivity {
                 Intent intent = new Intent(LoginActivity.this, ProfileSection.class);
                 intent.putExtra("fullName",fullName);
                 intent.putExtra("email",email);
+                intent.putExtra("username",username);
                 startActivity(intent);
+                finish();
             }
             else{
                 Log.e(tag,"Error: Invalid column index");

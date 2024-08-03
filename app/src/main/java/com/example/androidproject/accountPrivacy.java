@@ -23,7 +23,8 @@ public class accountPrivacy extends AppCompatActivity {
     private SwitchCompat third_party;
     private SwitchCompat receive_emails;
     private Button savePreferences;
-    private SharedPreferences accountPrivacyPreferences;
+    private UserDatabaseHelper dbHelper;
+    private String username;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,10 +38,11 @@ public class accountPrivacy extends AppCompatActivity {
         third_party = findViewById(R.id.third_party_toggle);
         receive_emails = findViewById(R.id.receive_mails_toggle);
         savePreferences = findViewById(R.id.savePreferences);
-        accountPrivacyPreferences = getSharedPreferences("AccountPrivacyPrefs",MODE_PRIVATE);
+        dbHelper = UserDatabaseHelper.getInstance(this);
+        username = getIntent().getStringExtra("username");
         loadAccountPrivacySettings();
-        RelativeLayout backButton = findViewById(R.id.backButton);
 
+        RelativeLayout backButton = findViewById(R.id.backButton);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -48,6 +50,7 @@ public class accountPrivacy extends AppCompatActivity {
                 Intent intent  = new Intent(accountPrivacy.this, Setting.class);
                 intent.putExtra("fullName", getIntent().getStringExtra("fullName"));
                 intent.putExtra("email", getIntent().getStringExtra("email"));
+                intent.putExtra("username",username);
                 startActivity(intent);
                 finish();
             }
@@ -65,34 +68,32 @@ public class accountPrivacy extends AppCompatActivity {
         loadAccountPrivacySettings();
     }
     private void loadAccountPrivacySettings(){
-        boolean thirdParty = accountPrivacyPreferences.getBoolean("thirdParty",true);
-        boolean receiveEmails = accountPrivacyPreferences.getBoolean("receiveEmails",true);
-        third_party.setChecked(thirdParty);
-        receive_emails.setChecked(receiveEmails);
+        boolean[] settings = dbHelper.loadAccountPrivacySettings(username);
+        third_party.setChecked(settings[0]);
+        receive_emails.setChecked(settings[1]);
     }
     private void saveAccountPrivacySettings(){
         boolean thirdParty = third_party.isChecked();
         boolean receiveEmails = receive_emails.isChecked();
-        new saveAccountPrivacySettingsTask(this,accountPrivacyPreferences,thirdParty,receiveEmails).execute();
+        new saveAccountPrivacySettingsTask(this,dbHelper,username,thirdParty,receiveEmails).execute();
     }
     private static class saveAccountPrivacySettingsTask extends AsyncTask<Void, Void, Void>{
         private Context context;
-        private SharedPreferences sharedPreferences;
+        private UserDatabaseHelper dbHelper;
+        private String username;
         private boolean thirdParty;
         private boolean receiveEmails;
 
-        public saveAccountPrivacySettingsTask(Context context,SharedPreferences sharedPreferences,boolean thirdParty,boolean receiveEmails){
+        public saveAccountPrivacySettingsTask(Context context,UserDatabaseHelper dbHelper,String username,boolean thirdParty,boolean receiveEmails){
             this.context = context;
-            this.sharedPreferences = sharedPreferences;
+            this.dbHelper = dbHelper;
+            this.username = username;
             this.thirdParty = thirdParty;
             this.receiveEmails = receiveEmails;
         }
         @Override
         protected Void doInBackground(Void... voids){
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putBoolean("thirdParty",thirdParty);
-            editor.putBoolean("receiveEmails",receiveEmails);
-            editor.apply();
+            dbHelper.saveAccountPrivacySettings(username,thirdParty,receiveEmails);
             return null;
         }
         @Override
