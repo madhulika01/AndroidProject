@@ -7,40 +7,34 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".notifications">
-    <LinearLayout
-        android:id="@+id/backButtonAndHeading"
-        android:layout_width="match_parent"
+    <RelativeLayout
+        android:id="@+id/backButton"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="20dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="20dp"
-        android:layout_marginBottom="20dp">
-        <RelativeLayout
-            android:id="@+id/backButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-            <View
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:background="@drawable/back_button" />
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@drawable/back_sign"
-                android:contentDescription="@string/go_back_icon"
-                android:layout_centerInParent="true" />
-        </RelativeLayout>
-        <TextView
-            android:id="@+id/notificationHeading"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginStart="100dp"
-            android:text="@string/notificationsHeading"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-    </LinearLayout>
+        android:layout_marginTop="20dp">
+        <View
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/back_button" />
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/back_sign"
+            android:contentDescription="@string/go_back_icon"
+            android:layout_centerInParent="true" />
+    </RelativeLayout>
+    <TextView
+        android:id="@+id/notificationHeading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/notificationsHeading"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
     <TextView
         android:id="@+id/pushNotifications"
         android:layout_width="wrap_content"

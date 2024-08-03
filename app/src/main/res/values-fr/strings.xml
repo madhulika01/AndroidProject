@@ -78,7 +78,7 @@
     <string name="helpTextView">Aide et soutien</string>
     <string name="intro">Bienvenue dans notre section Aide et support !
         Nous sommes là pour vous assurer une expérience fluide et agréable en utilisant notre application de planification de voyage.
-        Que vous ayez besoin d'aide pour la réservation, la planification d'un itinéraire ou la gestion de votre compte,
+        Que vous ayez besoin d\'aide pour la réservation, la planification d\'un itinéraire ou la gestion de votre compte,
         nos ressources complètes et notre équipe d’assistance dédiée sont prêtes à vous aider.</string>
     <string name="faqHeading">Foire aux questions (FAQ):</string>
     <string name="faqContent">Trouvez des réponses rapides aux questions courantes sur l\'utilisation de notre application, la réservation de voyages,
@@ -111,4 +111,5 @@
     <string name="feedback_toggle">E-mails de commentaires</string>
     <string name="support_toggle">E-mails d\'assistance</string>
     <string name="saveNotificationsPref">Sauvegarder</string>
+
 </resources>

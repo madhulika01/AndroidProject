@@ -74,6 +74,12 @@ public class ProfileSection extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Log.i(tag,"Clicking on itinerary section");
+                /*
+                Intent intent = new Intent(ProfileSection.this, ItineraryActivity.class);
+                intent.putExtra("fullName", fullName);
+                intent.putExtra("email", email);
+                startActivity(intent);
+                 */
             }
         });
 
