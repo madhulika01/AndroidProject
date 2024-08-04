@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
@@ -28,7 +29,8 @@ public class SignUpActivity extends AppCompatActivity {
     private Button signUpButton;
     private TextView alreadyUser;
     private UserDatabaseHelper dbHelper;
-    private String tag="SignUp Activity";
+    private String tag = "SignUp Activity";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +41,7 @@ public class SignUpActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
         fullNameEdit = findViewById(R.id.fullNameEdit);
         usernameEdit = findViewById(R.id.usernameEdit);
         emailIDEdit = findViewById(R.id.emailIDEdit);
@@ -57,15 +60,16 @@ public class SignUpActivity extends AppCompatActivity {
                 String email = emailIDEdit.getText().toString();
                 String password = passwordEdit.getText().toString();
                 String confirmPassword = confirmPasswordEdit.getText().toString();
-                if(isInputValid(fullName,username,email,password,confirmPassword)) {
-                    if (addUserToDatabase(fullName, username, email, password)) {
+                if (isInputValid(fullName, username, email, password, confirmPassword)) {
+                    long userId = addUserToDatabase(fullName, username, email, password);
+                    if (userId != -1) {
                         Toast.makeText(SignUpActivity.this, "Sign up Successful", Toast.LENGTH_SHORT).show();
-                        saveLoginState(username,fullName,email);
-                        navigateNext();
+                        saveLoginState(userId, username, fullName, email);
+                        navigateNext(userId, fullName, email, username);
                     } else {
                         Toast.makeText(SignUpActivity.this, "Sign Up Failed", Toast.LENGTH_SHORT).show();
                     }
-                }else{
+                } else {
                     Toast.makeText(SignUpActivity.this, "Please check your inputs", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -74,38 +78,52 @@ public class SignUpActivity extends AppCompatActivity {
         alreadyUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(SignUpActivity.this,LoginActivity.class);
+                Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
                 startActivity(intent);
             }
         });
     }
-    private boolean isInputValid(String fullName,String username,String email,String password,String confirmPassword){
-        return !fullName.isEmpty() || username.isEmpty() || email.isEmpty() || password.isEmpty() ||confirmPassword.isEmpty() && !password.equals(confirmPassword);
+
+    private boolean isInputValid(String fullName, String username, String email, String password, String confirmPassword) {
+        return !fullName.isEmpty() && !username.isEmpty() && !email.isEmpty() && !password.isEmpty() && !confirmPassword.isEmpty() && password.equals(confirmPassword);
     }
 
-    private boolean addUserToDatabase(String fullName,String username,String email, String password){
+    private long addUserToDatabase(String fullName, String username, String email, String password) {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         ContentValues cValues = new ContentValues();
-        cValues.put(UserDatabaseHelper.FULL_NAME,fullName);
-        cValues.put(UserDatabaseHelper.USERNAME,username);
-        cValues.put(UserDatabaseHelper.EMAIL,email);
-        cValues.put(UserDatabaseHelper.PASSWORD,password);
-        Log.i(tag,"Entry added to the Database Users with Username" + username +" and password "+password);
-        long newRowId = db.insert(UserDatabaseHelper.USERS, null,cValues);
-        return newRowId!=-1;
+        cValues.put(UserDatabaseHelper.FULL_NAME, fullName);
+        cValues.put(UserDatabaseHelper.USERNAME, username);
+        cValues.put(UserDatabaseHelper.EMAIL, email);
+        cValues.put(UserDatabaseHelper.PASSWORD, password);
+        cValues.put(UserDatabaseHelper.THIRD_PARTY, 1);
+        cValues.put(UserDatabaseHelper.RECEIVE_EMAILS, 1);
+        cValues.put(UserDatabaseHelper.REMINDERS, 1);
+        cValues.put(UserDatabaseHelper.TRENDING_PLACES, 1);
+        cValues.put(UserDatabaseHelper.FEEDBACK, 1);
+        cValues.put(UserDatabaseHelper.SUPPORT, 1);
+        Log.i(tag, "Entry added to the Database Users with Username " + username + " and password " + password);
+        long newRowId = db.insert(UserDatabaseHelper.TRAVELERS, null, cValues);
+        db.close();
+        return newRowId;
     }
-    private void saveLoginState(String username, String fullName, String email) {
+
+    private void saveLoginState(long userId, String username, String fullName, String email) {
         SharedPreferences sharedPreferences = getSharedPreferences("LoginPrefs", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putBoolean("isLoggedIn", true);
+        editor.putLong("userId", userId);
         editor.putString("username", username);
         editor.putString("fullName", fullName);
         editor.putString("email", email);
         editor.apply();
     }
 
-    private void navigateNext() {
+    private void navigateNext(long userId, String fullName, String email, String username) {
         Intent intent = new Intent(SignUpActivity.this, ProfileSection.class);
+        intent.putExtra("userId", userId);
+        intent.putExtra("fullName", fullName);
+        intent.putExtra("email", email);
+        intent.putExtra("username", username);
         startActivity(intent);
         finish();
     }

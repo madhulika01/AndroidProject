@@ -7,39 +7,38 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ProfileSection">
-    <LinearLayout
-        android:id="@+id/backButtonAndHeading"
-        android:layout_width="match_parent"
+    <RelativeLayout
+        android:id="@+id/backButton"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="20dp"
-        android:layout_marginStart="20dp">
-        <RelativeLayout
-            android:id="@+id/backButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-            <View
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:background="@drawable/back_button" />
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@drawable/back_sign"
-                android:contentDescription="@string/go_back_icon"
-                android:layout_centerInParent="true" />
-        </RelativeLayout>
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        >
+        <View
+            android:id="@+id/back_view"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/back_button"
+            android:clickable="true"/>
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/back_sign"
+            android:contentDescription="@string/go_back_icon"
+            android:layout_centerInParent="true"
+            android:clickable="false"/>
+    </RelativeLayout>
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginStart="112dp"
+        android:layout_marginBottom="10dp"
         android:text="@string/profile"
         android:textSize="20sp"
         android:textStyle="bold"/>
-    </LinearLayout>
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="70dp"
@@ -101,30 +100,6 @@
             android:layout_gravity="center"
             android:textSize="16sp"/>
 
-    </LinearLayout>
-    <LinearLayout
-        android:id="@+id/myTripsLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginBottom="10dp"
-        android:layout_marginStart="20dp">
-
-        <ImageView
-            android:id="@+id/myTripsImageView"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:contentDescription="@string/myTripsIcon"
-            android:layout_marginHorizontal="10dp"
-            app:srcCompat="@drawable/clipboard" />
-
-        <TextView
-            android:id="@+id/myTripsTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/myTrips"
-            android:layout_gravity="center"
-            android:textSize="16sp"/>
     </LinearLayout>
     <LinearLayout
         android:id="@+id/itineraryLayout"

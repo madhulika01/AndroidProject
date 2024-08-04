@@ -34,6 +34,12 @@
     <string name="themeIcon">Theme Icon</string>
     <string name="deleteAccount">Delete Account</string>
     <string name="deleteAccountIcon">Delete Account Icon</string>
+    <string name="changeLanguageDialog">Change Language</string>
+    <string name="changeLanguageMessage">To change the language, please go to the system settings.</string>
+    <string name="gotoSettings">Go to Settings</string>
+    <string name="cancel">Cancel</string>
+    <string name="chooseTheme">Choose Theme</string>
+    <string name="deleteMessage">Are you sure you want to delete your account?</string>
     <!--Profile Page -->
     <string name="profile">Profile</string>
     <string name="profile_img">Profile image icon</string>
@@ -79,24 +85,42 @@
         We\'re here to ensure you have a smooth and enjoyable experience using our travel planning app.
         Whether you need assistance with booking, itinerary planning, or managing your account,
         our comprehensive resources and dedicated support team are ready to help.</string>
-    <string name="faqHeading">Frequently Asked Questions (FAQs):</string>
+    <string name="feedbackMessage">Your feedback is important to us. Let us know what you think and how we can make our app better for you.</string>
+    <string name="feedbackDialogTitle">Feedback</string>
+    <string name="feedbacKSubmit">Submit</string>
+    <string name="feedbackToast">Feedback Received:</string>
+    <!--FAQ Section -->
+    <string name="faqHeading">Frequently Asked Questions (FAQs)</string>
     <string name="faqContent">Find quick answers to common questions about using our app, booking trips,
         managing your profile, and more.</string>
-    <string name="contactUsHeading">Contact Us:</string>
+    <string name="question1">How to use this app?</string>
+    <string name="answer1">You need to log in first. Upon successful login, you will be redirected to the homepage.
+        Once there, you can manually search for your destination,or fill in a questionnaire to receive personalized recommendations.
+        Initially, you will select your destination, followed by choosing activities, indicating the number of people traveling, and specifying the climate.
+        Based on this information, you will be given recommendations.</string>
+    <string name="question2">Can I search the destination manually?</string>
+    <string name="answer2">Yes, you can search for destinations manually by using our search bar at the top of the page. </string>
+    <string name="question3">How do I create a travel itinerary?</string>
+    <string name="answer3">You can create itinerary by clicking on the add button entering the place and date, then clicking on the entry you will
+        be redirected to detailed view which will give you options to add details for different days based on morning,afternoon and evening.</string>
+    <!--Contact Us Section -->
+    <string name="contactUsHeading">Contact Us</string>
     <string name="contactUsContent">If you need personalized assistance,
         feel free to reach out to our support team.
         We\'re available via email, chat, or phone to help you with any inquiries
         or issues you may encounter.
     </string>
-    <string name="userGuidesHeading">User Guides:</string>
-    <string name="userGuidesContent">Explore our detailed user guides and tutorials to make the most of all the features our app offers.
-        Learn how to search for trips, add to your wishlist, plan itineraries,
-        and much more.</string>
-    <string name="feedbackHeading">Feedback:</string>
-    <string name="feedbackContent">We value your feedback! Share your suggestions and experiences to help us improve our services and better cater
-        to your travel needs.</string>
+    <string name="phoneImageView">phone logo</string>
+    <string name="phoneNumber">+1 435 657 8910</string>
+    <string name="emailImageView">mail logo</string>
+    <string name="email">travel@gmail.com</string>
+
+    <!--Feedback Dialog-->
+    <string name="feedbackHeading">Feedback</string>
+    <string name="feedbackEditText">Enter your feedback here</string>
     <string name="outro">Thank you for choosing our app for your travel adventures.
         We\'re here to support you every step of the way!</string>
+
     <!--Account Privacy page-->
     <string name="accountHeading">Account Privacy</string>
     <string name="third_party">Allow sharing your data with third-party services  </string>
@@ -111,6 +135,39 @@
     <string name="feedback_toggle">Feedback Emails</string>
     <string name="support_toggle">Support Emails</string>
     <string name="saveNotificationsPref">Save</string>
+    <!--Itinerary page 1-->
+    <string name="itineraryTitle">Itinerary</string>
+    <string name="add_button_text">Add</string>
+    <string name="addItineraryTitle">Title</string>
+    <string name="addItineraryDate">Date</string>
+    <string name="addItinerarySave">Save</string>
+    <string name="scrollViewTitle">Default Title</string>
+    <string name="scrollViewDate">Default Date</string>
+    <string name="scrollViewDescription">Scroll View</string>
+    <string name="scrollViewAdd">Add timeline</string>
+    <string name="itineraryTimeSlot">Time Slot</string>
+    <string name="calendar_icon">calender icon</string>
+    <string name="more_options">More options</string>
+    <string name="timeline_editText">Period (e.g., Morning, Afternoon)</string>
+    <string name="notesTimeline">Notes</string>
+    <string name="SaveTimeline">Save</string>
+    <string name="menu_delete">Delete</string>
+    <string name="addItineraryEmptyTitle">Please fill all fields</string>
+    <string name="addItinerarySuccessfully">Itinerary added successfully</string>
+    <string name="addItineraryFailed">Failed to add itinerary</string>
+    <string name="addItineraryUser">User ID not found</string>
+    <string name="invalidUser">Invalid user ID</string>
+    <string name="deleteItineraryItem">Item deleted</string>
+    <!-- ScrollView-->
+    <string name="scrollTitle">No Title</string>
+    <string name="scrollDate">No Date</string>
+    <string name="errorScroll">Error</string>
+    <string name="retrieveScroll">Failed to retrieve itinerary details</string>
+    <string name="invalidItineraryId">Invalid itinerary ID</string>
+    <string name="notesFill">Please fill all fields</string>
+    <string name="failedAddTimeline">Failed to add timeline</string>
+    <string name="errorLoadingTimeline">Error loading timeline data</string>
+
     <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
 
 </resources>

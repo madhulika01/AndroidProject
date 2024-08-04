@@ -26,7 +26,8 @@ public class notifications extends AppCompatActivity {
     private SwitchCompat feedbackToggle;
     private SwitchCompat supportToggle;
     private Button saveNotificationPref;
-    private SharedPreferences notificationsPrefs;
+    private UserDatabaseHelper dbHelper;
+    private String username;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,7 +43,14 @@ public class notifications extends AppCompatActivity {
         feedbackToggle = findViewById(R.id.feedback_toggle);
         supportToggle = findViewById(R.id.support_toggle);
         saveNotificationPref = findViewById(R.id.saveNotifiationPref);
-        notificationsPrefs = getSharedPreferences("NotificationPrefs",MODE_PRIVATE);
+        dbHelper = UserDatabaseHelper.getInstance(this);
+        username = getIntent().getStringExtra("username");
+
+        if (username == null) {
+            Log.e(tag, "Username is null. Exiting activity.");
+            finish();
+            return;
+        }
         loadNotificationsSettings();
         RelativeLayout backButton = findViewById(R.id.backButton);
         backButton.setOnClickListener(new View.OnClickListener() {
@@ -52,6 +60,7 @@ public class notifications extends AppCompatActivity {
                 Intent intent  = new Intent(notifications.this, Setting.class);
                 intent.putExtra("fullName", getIntent().getStringExtra("fullName"));
                 intent.putExtra("email", getIntent().getStringExtra("email"));
+                intent.putExtra("username",username);
                 startActivity(intent);
                 finish();
             }
@@ -69,34 +78,32 @@ public class notifications extends AppCompatActivity {
         loadNotificationsSettings();
     }
     private void loadNotificationsSettings() {
-        boolean reminders = notificationsPrefs.getBoolean("reminders", true);
-        boolean trendingPlaces = notificationsPrefs.getBoolean("trendingPlaces", true);
-        boolean feedback = notificationsPrefs.getBoolean("feedback", true);
-        boolean support = notificationsPrefs.getBoolean("support", true);
-
-        remindersToggle.setChecked(reminders);
-        trendingPlacesToggle.setChecked(trendingPlaces);
-        feedbackToggle.setChecked(feedback);
-        supportToggle.setChecked(support);
+        boolean[] settings = dbHelper.loadNotificationSettings(username);
+        remindersToggle.setChecked(settings[0]);
+        trendingPlacesToggle.setChecked(settings[1]);
+        feedbackToggle.setChecked(settings[2]);
+        supportToggle.setChecked(settings[3]);
     }
 
     private void saveNotificationsSettings() {
-       boolean reminders = remindersToggle.isChecked();
-       boolean trendingPlaces = trendingPlacesToggle.isChecked();
-       boolean feedback = feedbackToggle.isChecked();
-       boolean support = supportToggle.isChecked();
-       new saveNotificationsPreferencesTask(this,notificationsPrefs,reminders,trendingPlaces,feedback,support).execute();
+        boolean reminders = remindersToggle.isChecked();
+        boolean trendingPlaces = trendingPlacesToggle.isChecked();
+        boolean feedback = feedbackToggle.isChecked();
+        boolean support = supportToggle.isChecked();
+        new saveNotificationsPreferencesTask(this,dbHelper,username,reminders,trendingPlaces,feedback,support).execute();
     }
     private static class saveNotificationsPreferencesTask extends AsyncTask<Void, Void, Void>{
         private Context context;
-        private SharedPreferences sharedPreferences;
+        private UserDatabaseHelper dbHelper;
+        private String username;
         private boolean reminders;
         private boolean trendingPlaces;
         private boolean feedback;
         private boolean support;
-        public saveNotificationsPreferencesTask(Context context,SharedPreferences sharedPreferences,boolean reminders,boolean trendingPlaces,boolean feedback,boolean support){
+        public saveNotificationsPreferencesTask(Context context,UserDatabaseHelper dbHelper,String username,boolean reminders,boolean trendingPlaces,boolean feedback,boolean support){
             this.context = context;
-            this.sharedPreferences = sharedPreferences;
+            this.dbHelper = dbHelper;
+            this.username = username;
             this.reminders = reminders;
             this.trendingPlaces = trendingPlaces;
             this.feedback = feedback;
@@ -104,12 +111,7 @@ public class notifications extends AppCompatActivity {
         }
         @Override
         protected Void doInBackground(Void... voids){
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putBoolean("reminders",reminders);
-            editor.putBoolean("trendingPlaces",trendingPlaces);
-            editor.putBoolean("feedback",feedback);
-            editor.putBoolean("support",support);
-            editor.apply();
+            dbHelper.saveNotificationSettings(username,reminders,trendingPlaces,feedback,support);
             return null;
         }
         @Override

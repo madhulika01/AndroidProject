@@ -19,6 +19,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class ProfileSection extends AppCompatActivity {
     public String tag="profileSection";
+    private View view;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,23 +35,40 @@ public class ProfileSection extends AppCompatActivity {
         TextView emailIDTextView = findViewById(R.id.emailID);
         Button editProfile = findViewById(R.id.editProfile);
         LinearLayout settings = findViewById(R.id.settingsLayout);
-        LinearLayout myTrips = findViewById(R.id.myTripsLayout);
         LinearLayout itinerary = findViewById(R.id.itineraryLayout);
         LinearLayout changePassword = findViewById(R.id.changePasswordLayout);
         LinearLayout help = findViewById(R.id.helpLayout);
         LinearLayout logout = findViewById(R.id.logoutLayout);
 
+        view = findViewById(R.id.back_view);
+
         String fullName = getIntent().getStringExtra("fullName");
         String email = getIntent().getStringExtra("email");
 
+        if (fullName == null || email == null) {
+            SharedPreferences sharedPreferences = getSharedPreferences("LoginPrefs", Context.MODE_PRIVATE);
+            fullName = sharedPreferences.getString("fullName", "");
+            email = sharedPreferences.getString("email", "");
+        }
+
         fullNameTextView.setText(fullName);
         emailIDTextView.setText(email);
+        final String finalFullName = fullName;
+        final String finalEmail = email;
+
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         editProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ProfileSection.this, EditProfile.class);
-                intent.putExtra("fullName",fullName);
-                intent.putExtra("email",email);
+                intent.putExtra("fullName",finalFullName);
+                intent.putExtra("email",finalEmail);
+                intent.putExtra("username",getIntent().getStringExtra("username"));
                 startActivity(intent);
             }
         });
@@ -58,22 +76,28 @@ public class ProfileSection extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ProfileSection.this, Setting.class);
-                intent.putExtra("fullName", fullName);
-                intent.putExtra("email", email);
+                intent.putExtra("fullName",finalFullName );
+                intent.putExtra("email", finalEmail);
+                intent.putExtra("username",getIntent().getStringExtra("username"));
                 startActivity(intent);
-            }
-        });
-        myTrips.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.i(tag,"Clicking on my trips section");
             }
         });
 
         itinerary.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i(tag,"Clicking on itinerary section");
+                Log.i(tag, "Clicking on itinerary section");
+                Intent intent = new Intent(ProfileSection.this, ItineraryActivity.class);
+                intent.putExtra("fullName", finalFullName);
+                intent.putExtra("email", finalEmail);
+                intent.putExtra("username", getIntent().getStringExtra("username"));
+                long userId = getIntent().getLongExtra("userId", -1);
+                if (userId == -1) {
+                    SharedPreferences sharedPreferences = getSharedPreferences("LoginPrefs", Context.MODE_PRIVATE);
+                    userId = sharedPreferences.getLong("userId", -1);
+                }
+                intent.putExtra("userId", userId);
+                startActivity(intent);
             }
         });
 
@@ -81,8 +105,9 @@ public class ProfileSection extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ProfileSection.this, changePassword.class);
-                intent.putExtra("fullName", fullName);
-                intent.putExtra("email", email);
+                intent.putExtra("fullName", finalFullName);
+                intent.putExtra("email", finalEmail);
+                intent.putExtra("username",getIntent().getStringExtra("username"));
                 startActivity(intent);
             }
         });
@@ -91,8 +116,9 @@ public class ProfileSection extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ProfileSection.this, Help.class);
-                intent.putExtra("fullName", fullName);
-                intent.putExtra("email", email);
+                intent.putExtra("fullName", finalFullName);
+                intent.putExtra("email", finalEmail);
+                intent.putExtra("username",getIntent().getStringExtra("username"));
                 startActivity(intent);
             }
         });

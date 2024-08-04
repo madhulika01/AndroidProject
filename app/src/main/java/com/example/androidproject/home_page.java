@@ -193,7 +193,7 @@ public class home_page extends AppCompatActivity {
                     startActivity(new Intent(home_page.this, Wishlist.class));
                     return true;
                 }
-                else if(item.getItemId() == R.id.editProfile) {
+                else if(item.getItemId() == R.id.nav_profile) {
                     startActivity(new Intent(home_page.this, ProfileSection.class));
                     return true;
                 }

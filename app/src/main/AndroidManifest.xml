@@ -17,6 +17,24 @@
         android:theme="@style/Theme.AndroidProject"
         tools:targetApi="31">
         <activity
+            android:name=".faq"
+            android:exported="false" />
+        <activity
+            android:name=".TimelineItem"
+            android:exported="false" />
+        <activity
+            android:name=".ItineraryScrollView"
+            android:exported="false" />
+        <activity
+            android:name=".ItineraryActivity"
+            android:exported="false" />
+        <activity
+            android:name=".contactUs"
+            android:exported="false" />
+        <activity
+            android:name=".AddItineraryActivity"
+            android:exported="false" />
+        <activity
             android:name=".FeaturedActivity"
             android:exported="false" />
         <activity

@@ -55,8 +55,6 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(LoginActivity.this,"Login Successful",Toast.LENGTH_SHORT).show();
                     saveLogin(username,password);
                     navigateNext(username);
-                    Intent intent = new Intent(LoginActivity.this, home_page.class);
-                    startActivity(intent);
                 }
                 else{
                     Toast.makeText(LoginActivity.this,"Invalid username or password",Toast.LENGTH_SHORT).show();
@@ -80,7 +78,7 @@ public class LoginActivity extends AppCompatActivity {
         String[] selectionArgs = {username,password};
 
         Cursor cursor = db.query(
-                UserDatabaseHelper.USERS,
+                UserDatabaseHelper.TRAVELERS,
                 projection,
                 selection,
                 selectionArgs,
@@ -90,6 +88,7 @@ public class LoginActivity extends AppCompatActivity {
         );
         boolean loginSuccessful = cursor.getCount() > 0;
         cursor.close();
+        db.close();
         return loginSuccessful;
     }
     private void navigateNext(String username){
@@ -101,10 +100,14 @@ public class LoginActivity extends AppCompatActivity {
                 String fullName = cursor.getString(fullNameIndex);
                 String email = cursor.getString(emailIndex);
                 cursor.close();
+                long userId = getIntent().getLongExtra("userId", -1);
                 Intent intent = new Intent(LoginActivity.this, home_page.class);
                 intent.putExtra("fullName",fullName);
                 intent.putExtra("email",email);
+                intent.putExtra("username",username);
+                intent.putExtra("userId", userId);
                 startActivity(intent);
+                finish();
             }
             else{
                 Log.e(tag,"Error: Invalid column index");
@@ -118,6 +121,8 @@ public class LoginActivity extends AppCompatActivity {
         editor.putBoolean("isLoggedIn",true);
         editor.putString("username",username);
         editor.putString("password",password);
+        long userId = dbHelper.getUserId(username);
+        editor.putLong("userId",userId);
         editor.apply();
     }
     private void checkLoginState(){

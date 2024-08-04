@@ -111,7 +111,7 @@ public class FeaturedActivity extends AppCompatActivity {
                 if (item.getItemId() == R.id.nav_favorites) {
                     startActivity(new Intent(FeaturedActivity.this, Wishlist.class));
                     return true;
-                }else if(item.getItemId() == R.id.editProfile) {
+                }else if(item.getItemId() == R.id.nav_profile) {
                     startActivity(new Intent(FeaturedActivity.this, ProfileSection.class));
                     return true;
                 }
