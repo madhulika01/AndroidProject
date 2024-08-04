@@ -1,6 +1,8 @@
 package com.example.androidproject;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
@@ -27,6 +29,10 @@ public class MapLocation extends FragmentActivity implements OnMapReadyCallback 
     GoogleMap gmaps;
     FrameLayout map;
 
+    public double latCoords, longCoords;
+    public LatLng mapCoords;
+
+
     Button exitMap;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +44,14 @@ public class MapLocation extends FragmentActivity implements OnMapReadyCallback 
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });*/
+        Intent intent = getIntent();
+        latCoords = intent.getDoubleExtra("lattitude", 43.4643);
+        longCoords = intent.getDoubleExtra("longitude", -80.5204);
+        Log.e("Map","lat " + latCoords);
+        Log.e("Map","long " + longCoords);
+
+
+        mapCoords = new LatLng(latCoords, longCoords);
         map = findViewById(R.id.map_space);
         exitMap = findViewById(R.id.exit_map);
         exitMap.setOnClickListener(new View.OnClickListener() {
@@ -53,8 +67,11 @@ public class MapLocation extends FragmentActivity implements OnMapReadyCallback 
     @Override
     public void onMapReady(@NonNull GoogleMap googleMap) {
         this.gmaps = googleMap;
-        LatLng defaultCoords = new LatLng(43.4643, 80.5204);
-        this.gmaps.addMarker(new MarkerOptions().position(defaultCoords).title("Marker in Waterloo"));
-        this.gmaps.moveCamera(CameraUpdateFactory.newLatLng(defaultCoords));
+        //LatLng defaultCoords = new LatLng(43.4643, -80.5204);
+        this.gmaps.addMarker(new MarkerOptions().position(mapCoords).title("Location Marker"));
+        this.gmaps.moveCamera(CameraUpdateFactory.zoomTo(10));
+        this.gmaps.moveCamera(CameraUpdateFactory.newLatLng(mapCoords));
+        //this.gmaps.setMinZoomPreference(10);
+
     }
 }

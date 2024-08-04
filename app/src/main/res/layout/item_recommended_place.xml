@@ -1,4 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="8dp">
+
+    <ImageView
+        android:id="@+id/place_image"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:scaleType="centerCrop" />
+
+    <TextView
+        android:id="@+id/place_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:paddingTop="8dp" />
+
+    <TextView
+        android:id="@+id/place_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:paddingTop="4dp" />
+</LinearLayout>
+-->
+
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -36,7 +67,7 @@
                 android:layout_height="wrap_content"
                 android:text="Destination Title"
                 android:textColor="#000"
-                android:textSize="18sp"
+                android:textSize="24dp"
                 android:textStyle="bold" />
 
             <TextView
@@ -46,15 +77,15 @@
                 android:layout_marginStart="4dp"
                 android:text="Location"
                 android:textColor="#2E2E2E"
-                android:textSize="16sp" />
+                android:textSize="22dp" />
 
-            <TextView
+            <!--<TextView
                 android:id="@+id/destination_description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Description of the destination goes here."
                 android:textColor="#2E2E2E"
-                android:textSize="15sp" />
+                android:textSize="15sp" />-->
 
             <!--<LinearLayout
                 android:layout_width="wrap_content"
@@ -95,13 +126,12 @@
         </LinearLayout>
 
 
-        <!-- Add a delete button -->
         <ImageView
-            android:id="@+id/delete_button"
+            android:id="@+id/wishlist_add"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_gravity="end"
-            android:src="@drawable/trash"
+            android:src="@drawable/heart_icon"
             android:contentDescription="delete button" />
 
     </LinearLayout>

@@ -15,6 +15,7 @@ public class UserDatabaseHelper extends SQLiteOpenHelper {
     public static final String USERNAME = "username";
     public static final String EMAIL = "email";
     public static final String PASSWORD ="password";
+
     private static final String DATABASE_NAME = "users.db";
     private static final int VERSION_NUM = 1;
     private static UserDatabaseHelper instance;

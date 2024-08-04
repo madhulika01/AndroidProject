@@ -17,6 +17,24 @@
         android:theme="@style/Theme.AndroidProject"
         tools:targetApi="31">
         <activity
+            android:name=".FeaturedActivity"
+            android:exported="false" />
+        <activity
+            android:name=".TravelWithSelectionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ResultActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DestinationSelectionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ClimateSelectionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ActivitySelectionActivity"
+            android:exported="false" />
+        <activity
             android:name=".Wishlist"
             android:exported="false" />
         <activity
@@ -74,8 +92,7 @@
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyCKWxNe0eQzQuSnBLYMxOQb3cjp2_fnayk"
-            />
+            android:value="AIzaSyCKWxNe0eQzQuSnBLYMxOQb3cjp2_fnayk" />
     </application>
 
 </manifest>

@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".home_page">
+    tools:context=".FeaturedActivity">
 
     <TextView
         android:id="@+id/hello_text"
@@ -32,17 +32,6 @@
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="8dp" />
 
-    <!--<com.google.android.material.search.SearchBar
-        android:id="@+id/search_bar"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:hint="Search"
-        app:layout_constraintTop_toBottomOf="@id/where_to_go"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginTop="16dp" />-->
     <androidx.appcompat.widget.SearchView
         android:id="@+id/search_bar"
         android:layout_width="0dp"
@@ -58,7 +47,6 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginTop="16dp" />
-
 
     <!--Change this Linear Layout to a horizontal scroll view with 3 buttons-->
     <!--<LinearLayout
@@ -107,11 +95,11 @@
             android:gravity="center">
 
             <Button
-                android:id="@+id/tabAll"
+                android:id="@+id/tabFeatured"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:text="All"
+                android:text="Featured"
                 android:backgroundTint="@color/black"
                 android:textColor="@android:color/white"
                 android:layout_marginEnd="5dp"/>
@@ -125,12 +113,14 @@
                 android:layout_marginEnd="5dp"/>
 
             <Button
-                android:id="@+id/tabFeatured"
+                android:id="@+id/tabAll"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Featured"
+
+                android:text="All"
+
                 android:textColor="@android:color/white"
-                android:layout_marginEnd="21dp"/>
+                android:layout_marginEnd="5dp"/>
 
         </LinearLayout>
 
@@ -148,6 +138,7 @@
         app:layout_constraintBottom_toBottomOf="@id/navBar"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="16dp"
+        android:paddingBottom="40dp"
         />
 
 

@@ -101,7 +101,7 @@ public class LoginActivity extends AppCompatActivity {
                 String fullName = cursor.getString(fullNameIndex);
                 String email = cursor.getString(emailIndex);
                 cursor.close();
-                Intent intent = new Intent(LoginActivity.this, ProfileSection.class);
+                Intent intent = new Intent(LoginActivity.this, home_page.class);
                 intent.putExtra("fullName",fullName);
                 intent.putExtra("email",email);
                 startActivity(intent);
